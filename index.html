@@ -1,68 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Static Resume</title>
+  <title>Dynamic Resume Builder</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-  <div class="resume-container">
-     <!-- Personal Information -->
-    <section id="personal-info">
-      <img src="profile.png" alt="Profile Picture" class="profile-pic">
-      <h1>Amna Younus</h1>
-      <p>Email: amnayounuslive@gmail.com | Phone: +123456789</p>
-    </section>
+  <div class="container">
+    <div class="form-container">
+      <h2>Resume Information</h2>
+      <form id="resumeForm">
+        <fieldset>
+          <legend>Personal Information</legend>
+          <input type="text" id="name" name="name" placeholder="Full Name" required>
+          <input type="email" id="email" name="email" placeholder="Email" required >
+          <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+        </fieldset>
 
-    <!-- Education -->
-    <section id="education">
-      <div class="section-header">
-        <h2>Education</h2>
-        <button id="toggleEducation" class="toggle-btn">
-          <span class="icon-plus">+</span>
-          <span class="icon-cross">×</span>
-        </button>
-      </div>
-      <div id="education-content" class="content">
-        <p><strong>Bachelor of Science in Software Engineering</strong><br>MAJU, 2018-2022</p>
-        <p><strong>Intermediate</strong><br>Khatoon e Pakistan Govt. Degree College for Women 2016-2018</p>
-      </div>
-    </section>
+        <fieldset>
+          <legend>Education</legend>
+          <div id="educationFields">
+            <div class="education-group">
+              <input type="text" name="degree" placeholder="Degree" required>
+              <input type="text" name="school" placeholder="School" required>
+              <input type="text" name="gradYear" placeholder="Graduation Year" required>
+            </div>
+          </div>
+          <button type="button" class="addMore" id="addEducation">Add More</button>
+        </fieldset>
 
-    <!-- Skills -->
-    <section id="skills">
-      <div class="section-header">
-        <h2>Skills</h2>
-        <button id="toggleSkills" class="toggle-btn">
-          <span class="icon-plus">+</span>
-          <span class="icon-cross">×</span>
-        </button>
-      </div>
-      <ul id="skills-content" class="content">
-        <li>Full-Stack Development</li>
-        <li>TypeScript, JavaScript, HTML, CSS</li>
-        <li>React, Next.js</li>
-        <li>WordPress Development</li>
-      </ul>
-    </section>
+        <fieldset>
+          <legend>Work Experience</legend>
+          <div id="workExperienceFields">
+            <div class="work-group">
+              <input type="text" name="jobTitle" placeholder="Job Title" required>
+              <input type="text" name="company" placeholder="Company" required>
+              <input type="text" name="workDates" placeholder="Employment Dates" required>
+            </div>
+          </div>
+          <button type="button" class="addMore" id="addExperience">Add More</button>
+        </fieldset>
 
-    <!--Work Experience-->
-    <section id="work-experience">
-      <div class="section-header">
-        <h2>Work Experience</h2>
-        <button id="toggleExperience" class="toggle-btn">
-          <span class="icon-plus">+</span>
-          <span class="icon-cross">×</span>
-        </button>
-      </div>
-      <div id="experience-content" class="content">
-        <p><strong>WordPress Developer</strong><br>IW Systems, 2024-Present</p>
-        <p><strong>WordPress Developer</strong><br>Team360, 2022-2023</p>
-      </div>
-    </section>
+        <fieldset>
+          <legend>Skills</legend>
+          <textarea id="skills" name="skills" placeholder="Enter skills (comma-separated)" required></textarea>
+        </fieldset>
+
+        <fieldset>
+          <legend>Profile Picture</legend>
+          <input type="file" id="profilePic" name="profilePic" accept="image/*" required>
+        </fieldset>
+
+        <button type="submit">Generate Resume</button>
+      </form>
+    </div>
+
+    <div class="resume-container">
+      <section id="personal-info">
+        <img src="profile.png" alt="Profile Picture" class="profile-pic hidden">
+        <h1 id="resumeName"></h1>
+        <p id="resumeContact"></p>
+      </section>
+
+      <section id="education">
+        <div class="section-header">
+          <h2>Education</h2>
+          <button class="toggle-btn">
+            <span class="icon-plus">+</span>
+            <span class="icon-cross">×</span>
+          </button>
+        </div>
+        <div id="education-content" class="content"></div>
+      </section>
+
+      <section id="work-experience">
+        <div class="section-header">
+          <h2>Work Experience</h2>
+          <button class="toggle-btn">
+            <span class="icon-plus">+</span>
+            <span class="icon-cross">×</span>
+          </button>
+        </div>
+        <div id="experience-content" class="content"></div>
+      </section>
+
+      <section id="skills">
+        <div class="section-header">
+          <h2>Skills</h2>
+          <button class="toggle-btn">
+            <span class="icon-plus">+</span>
+            <span class="icon-cross">×</span>
+          </button>
+        </div>
+        <ul id="skills-content" class="content"></ul>
+      </section>
+    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>

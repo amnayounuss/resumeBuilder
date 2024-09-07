@@ -5,15 +5,66 @@ body {
   background-color: #f4f4f4;
 }
 
-.resume-container {
-  max-width: 800px;
+.container {
+  display: flex;
+  max-width: 1200px;
   margin: 20px auto;
+  padding: 20px;
+}
+
+.form-container, .resume-container {
+  flex: 1;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding-left: 80px;
-  padding-right: 80px;
+}
+.resume-container{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.form-container {
+  margin-right: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+legend {
+  font-weight: bold;
+  color: #333;
+}
+
+input, textarea {
+  width: 97%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  background-color: #4c63af;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #6685ec;
 }
 
 #personal-info {
@@ -25,6 +76,11 @@ body {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
+  margin: 0 auto;
+}
+
+.profile-pic.hidden {
+  display: none;
 }
 
 h1, h2 {
@@ -49,23 +105,24 @@ section {
   align-items: center;
 }
 
-button {
+.toggle-btn {
   background-color: transparent;
-  border: 2px solid #007bff;
-  border-radius: 5px;
+  border: 2px solid #4c63af;
+  color: #4c63af;
+  border-radius: 50%;
   font-size: 1.2em;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   position: relative;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-button:hover {
-  background-color: #007bff;
+.toggle-btn:hover {
+  background-color: #6685ec;
   color: #fff;
 }
 
@@ -73,7 +130,6 @@ button:hover {
 .icon-cross {
   position: absolute;
   transition: opacity 0.3s ease;
-  font-weight: bold;
 }
 
 .icon-plus {
@@ -82,65 +138,41 @@ button:hover {
 
 .icon-cross {
   font-size: 22px;
-  opacity: 0; 
-}
-
-button.active .icon-plus {
   opacity: 0;
 }
 
-button.active .icon-cross {
+.toggle-btn.active .icon-plus {
+  opacity: 0;
+}
+
+.toggle-btn.active .icon-cross {
   opacity: 1;
 }
 
 @media (max-width: 768px) {
-  .resume-container {
-    max-width: 90%;
-    padding: 15px;
+  .container {
+    flex-direction: column;
   }
 
-  .profile-pic {
-    width: 120px;
-    height: 120px;
+  .form-container {
+    margin-right: 0;
+    margin-bottom: 20px;
   }
 
-  h1 {
-    font-size: 1.8em;
-  }
-
-  h2 {
-    font-size: 1.5em;
-  }
-
-  button {
-    width: 35px;
-    height: 35px;
-    font-size: 1em;
+  input, textarea {
+    width: 93%;
   }
 }
 
-@media (max-width: 480px) {
-  .resume-container {
-    max-width: 100%;
-    padding: 10px;
-  }
 
-  .profile-pic {
-    width: 100px;
-    height: 100px;
-  }
+.addMore{
+  background-color: #4c63af;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
 
-  h1 {
-    font-size: 1.5em;
-  }
-
-  h2 {
-    font-size: 1.3em;
-  }
-
-  button {
-    width: 30px;
-    height: 30px;
-    font-size: 0.9em;
-  }
+.addMore:hover {
+  background-color: #6685ec;
 }
