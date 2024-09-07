@@ -16,7 +16,7 @@
         <fieldset>
           <legend>Personal Information</legend>
           <input type="text" id="name" name="name" placeholder="Full Name" required>
-          <input type="email" id="email" name="email" placeholder="Email" required >
+          <input type="email" id="email" name="email" placeholder="Email" required>
           <input type="tel" id="phone" name="phone" placeholder="Phone" required>
         </fieldset>
 
@@ -59,13 +59,13 @@
     </div>
 
     <div class="resume-container">
-      <section id="personal-info">
+      <section id="personal-info" data-editable="true">
         <img src="profile.png" alt="Profile Picture" class="profile-pic hidden">
-        <h1 id="resumeName"></h1>
-        <p id="resumeContact"></p>
+        <h1 id="resumeName" contenteditable="true"></h1>
+        <p id="resumeContact" contenteditable="true"></p>
       </section>
 
-      <section id="education">
+      <section id="education" data-editable="true">
         <div class="section-header">
           <h2>Education</h2>
           <button class="toggle-btn">
@@ -73,10 +73,10 @@
             <span class="icon-cross">×</span>
           </button>
         </div>
-        <div id="education-content" class="content"></div>
+        <div id="education-content" class="content" contenteditable="true"></div>
       </section>
 
-      <section id="work-experience">
+      <section id="work-experience" data-editable="true">
         <div class="section-header">
           <h2>Work Experience</h2>
           <button class="toggle-btn">
@@ -84,10 +84,10 @@
             <span class="icon-cross">×</span>
           </button>
         </div>
-        <div id="experience-content" class="content"></div>
+        <div id="experience-content" class="content" contenteditable="true"></div>
       </section>
 
-      <section id="skills">
+      <section id="skills" data-editable="true">
         <div class="section-header">
           <h2>Skills</h2>
           <button class="toggle-btn">
@@ -95,7 +95,7 @@
             <span class="icon-cross">×</span>
           </button>
         </div>
-        <ul id="skills-content" class="content"></ul>
+        <ul id="skills-content" class="content" contenteditable="true"></ul>
       </section>
     </div>
   </div>

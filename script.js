@@ -54,6 +54,15 @@ document.addEventListener("DOMContentLoaded", function () {
         var phone = formData.get("phone");
         updateElement("resumeName", name);
         updateElement("resumeContact", "Email: ".concat(email, " | Phone: ").concat(phone));
+        var sections = document.querySelectorAll("section[data-editable='true']");
+        sections.forEach(function (section) {
+            var toggleButton = section.querySelector(".toggle-btn");
+            var content = section.querySelector(".content");
+            if (toggleButton && content) {
+                toggleButton.classList.add("active");
+                content.style.display = "block";
+            }
+        });
         var educationContent = document.getElementById("education-content");
         if (educationContent) {
             educationContent.innerHTML = "";
@@ -79,19 +88,16 @@ document.addEventListener("DOMContentLoaded", function () {
         var skillsContent = document.getElementById("skills-content");
         if (skillsContent) {
             var skills = formData.get("skills").split(",").map(function (skill) { return skill.trim(); });
-            skillsContent.innerHTML = skills.map(function (skill) { return "<li>".concat(skill, "</li>"); }).join("");
+            skillsContent.innerHTML = "";
+            skills.forEach(function (skill) {
+                skillsContent.innerHTML += "<li>".concat(skill, "</li>");
+            });
         }
-        document.querySelectorAll(".content").forEach(function (content) {
-            content.style.display = "block";
-        });
-        toggleButtons.forEach(function (button) {
-            button.classList.add("active");
-        });
     }
-    function updateElement(id, value) {
+    function updateElement(id, content) {
         var element = document.getElementById(id);
         if (element) {
-            element.textContent = value;
+            element.textContent = content;
         }
     }
 });

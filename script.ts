@@ -70,7 +70,17 @@ document.addEventListener("DOMContentLoaded", () => {
         updateElement("resumeName", name);
         updateElement("resumeContact", `Email: ${email} | Phone: ${phone}`);
 
-        const educationContent = document.getElementById("education-content");
+        const sections = document.querySelectorAll("section[data-editable='true']");
+        sections.forEach(section => {
+            const toggleButton = section.querySelector(".toggle-btn") as HTMLButtonElement;
+            const content = section.querySelector(".content") as HTMLElement;
+            if (toggleButton && content) {
+                toggleButton.classList.add("active");
+                content.style.display = "block";
+            }
+        });
+
+        const educationContent = document.getElementById("education-content") as HTMLElement;
         if (educationContent) {
             educationContent.innerHTML = "";
             const educationGroups = educationFields.querySelectorAll(".education-group");
@@ -84,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        const experienceContent = document.getElementById("experience-content");
+        const experienceContent = document.getElementById("experience-content") as HTMLElement;
         if (experienceContent) {
             experienceContent.innerHTML = "";
             const workGroups = workExperienceFields.querySelectorAll(".work-group");
@@ -98,25 +108,20 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        const skillsContent = document.getElementById("skills-content");
+        const skillsContent = document.getElementById("skills-content") as HTMLElement;
         if (skillsContent) {
             const skills = (formData.get("skills") as string).split(",").map(skill => skill.trim());
-            skillsContent.innerHTML = skills.map(skill => `<li>${skill}</li>`).join("");
+            skillsContent.innerHTML = "";
+            skills.forEach(skill => {
+                skillsContent.innerHTML += `<li>${skill}</li>`;
+            });
         }
-
-        document.querySelectorAll<HTMLElement>(".content").forEach(content => {
-            content.style.display = "block";
-        });
-
-        toggleButtons.forEach(button => {
-            button.classList.add("active");
-        });
     }
 
-    function updateElement(id: string, value: string) {
+    function updateElement(id: string, content: string) {
         const element = document.getElementById(id);
         if (element) {
-            element.textContent = value;
+            element.textContent = content;
         }
     }
 });
