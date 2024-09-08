@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         updateResume();
     });
+    var downloadButton = document.getElementById("downloadResume");
+    downloadButton.addEventListener("click", function () {
+        downloadResume();
+    });
     toggleButtons.forEach(function (button) {
         button.addEventListener("click", function () {
             var _a;
@@ -99,5 +103,18 @@ document.addEventListener("DOMContentLoaded", function () {
         if (element) {
             element.textContent = content;
         }
+    }
+    function downloadResume() {
+        var _a;
+        var resumeHTML = ((_a = document.querySelector(".resume-container")) === null || _a === void 0 ? void 0 : _a.outerHTML) || "";
+        var style = "\n            <style>\n                body { font-family: Arial, sans-serif; margin: 0; padding: 0; }\n                .resume-container { \n                    max-width: 700px; \n                    margin: 20px auto; \n                    padding: 20px; \n                    background: #fff; \n                    border: 1px solid #ddd; \n                    border-radius: 10px; \n                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); \n                    \n\n                }\n                .profile-pic { \n                    display: block; \n                    margin: 0 auto 20px; \n                    width: 150px; \n                    height: 150px; \n                    border-radius: 50%; \n                    object-fit: cover; \n                }\n                .resume-header { \n                    text-align: center; \n                    margin-bottom: 20px; \n                }\n                .resume-header h1, .resume-header p { \n                    margin: 0; \n                }\n                .resume-header hr { \n                    border: 0; \n                    border-top: 1px solid #ddd; \n                    margin: 10px 0; \n                }\n                .section-header { \n                    display: flex; \n                    justify-content: space-between; \n                    align-items: center; \n                    margin-bottom: 10px; \n                }\n                \n                .content { \n                    margin-top: 10px; \n                    padding: 0 20px; \n                }\n                .content p { \n                    margin: 0; \n                }\n                .content ul { \n                    list-style: none; \n                    padding: 0; \n                }\n                .content li { \n                    margin-bottom: 5px; \n                }\n                .form-container, .resume-container { \n                    padding: 20px; \n                    background: #fff; \n                    border-radius: 10px; \n                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); \n                }\n            </style>\n        ";
+        var blob = new Blob([style + resumeHTML], { type: "text/html" });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = "resume.html";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 });
