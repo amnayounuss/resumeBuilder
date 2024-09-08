@@ -131,77 +131,103 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function downloadResume() {
-        const resumeHTML = document.querySelector(".resume-container")?.outerHTML || "";
-        const style = `
-            <style>
-                body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-                .resume-container { 
-                    max-width: 700px; 
-                    margin: 20px auto; 
-                    padding: 20px; 
-                    background: #fff; 
-                    border: 1px solid #ddd; 
-                    border-radius: 10px; 
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-                    
+        
+        const resumeContainer = document.querySelector(".resume-container")?.cloneNode(true) as HTMLElement;
 
-                }
-                .profile-pic { 
-                    display: block; 
-                    margin: 0 auto 20px; 
-                    width: 150px; 
-                    height: 150px; 
-                    border-radius: 50%; 
-                    object-fit: cover; 
-                }
-                .resume-header { 
-                    text-align: center; 
-                    margin-bottom: 20px; 
-                }
-                .resume-header h1, .resume-header p { 
-                    margin: 0; 
-                }
-                .resume-header hr { 
-                    border: 0; 
-                    border-top: 1px solid #ddd; 
-                    margin: 10px 0; 
-                }
-                .section-header { 
-                    display: flex; 
-                    justify-content: space-between; 
-                    align-items: center; 
-                    margin-bottom: 10px; 
-                }
-                
-                .content { 
-                    margin-top: 10px; 
-                    padding: 0 20px; 
-                }
-                .content p { 
-                    margin: 0; 
-                }
-                .content ul { 
-                    list-style: none; 
-                    padding: 0; 
-                }
-                .content li { 
-                    margin-bottom: 5px; 
-                }
-                .form-container, .resume-container { 
-                    padding: 20px; 
-                    background: #fff; 
-                    border-radius: 10px; 
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-                }
-            </style>
-        `;
-        const blob = new Blob([style + resumeHTML], { type: "text/html" });
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "resume.html";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        if (resumeContainer) {
+            resumeContainer.querySelectorAll(".toggle-btn").forEach(button => {
+                (button as HTMLElement).style.display = "none"; 
+            });
+
+            const style = `
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+                    .resume-container { 
+                        max-width: 700px; 
+                        margin: 20px auto; 
+                        padding: 20px; 
+                        background: #fff; 
+                        border: 1px solid #ddd; 
+                        border-radius: 10px; 
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+                    }
+                    .profile-pic { 
+                        display: block; 
+                        margin: 0 auto 20px; 
+                        width: 150px; 
+                        height: 150px; 
+                        border-radius: 50%; 
+                        object-fit: cover; 
+                    }
+                    .resume-header { 
+                        text-align: center; 
+                        margin-bottom: 20px; 
+                    }
+                    .resume-header h1, .resume-header p { 
+                        margin: 0; 
+                    }
+                    .resume-header hr { 
+                        border: 0; 
+                        border-top: 1px solid #ddd; 
+                        margin: 10px 0; 
+                    }
+                    .section-header { 
+                        display: flex; 
+                        justify-content: space-between; 
+                        align-items: center; 
+                        margin-bottom: 10px; 
+                        padding-left: 5%; 
+                    }
+                    .icon-plus { 
+                        font-size: 20px; 
+                    }
+                    .icon-cross { 
+                        font-size: 22px; 
+                        display: none; 
+                    }
+                    .toggle-btn.active .icon-plus { 
+                        display: none; 
+                    }
+                    .toggle-btn.active .icon-cross { 
+                        display: block; 
+                    }
+                    .content { 
+                        margin-top: 10px; 
+                        padding: 0 5%; 
+                    }
+                    .content p { 
+                        margin: 0; 
+                    }
+                    .content ul { 
+                        list-style: none; 
+                        padding: 0; 
+                    }
+                    .content li { 
+                        margin-bottom: 5px; 
+                    }
+                    .form-container, .resume-container { 
+                        padding: 20px; 
+                        background: #fff; 
+                        border-radius: 10px; 
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+                    }
+                    .resume-header { 
+                        text-align: center; 
+                    }
+                    .resume-name, .resume-contact { 
+                        text-align: center; 
+                    }
+                </style>
+            `;
+
+            const blob = new Blob([style + resumeContainer.outerHTML], { type: "text/html" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "resume.html";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     }
 });
